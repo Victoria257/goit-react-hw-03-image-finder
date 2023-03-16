@@ -36,7 +36,7 @@ export class App extends Component {
         <ul>
           {imageList.map(({ id, webformatURL, largeImageURL }) => (
             <li key={id}>
-              <img src={webformatURL} alt="image" />
+              <img src={webformatURL} alt="imageName" />
             </li>
           ))}
         </ul>
