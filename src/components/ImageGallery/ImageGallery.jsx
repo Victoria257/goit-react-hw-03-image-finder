@@ -1,7 +1,8 @@
 import { ImageGalleryItem } from 'components/ImageGalleryItem/ImageGalleryItem';
+import css from './ImageGallery.module.css';
 export const ImageGallery = ({ imageList, isLoading, openModal }) => {
   return (
-    <ul>
+    <ul className={css.gallery}>
       {imageList.map(({ id, webformatURL, largeImageURL }) =>
         isLoading ? (
           <p>Loading...</p>

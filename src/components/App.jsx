@@ -6,6 +6,7 @@ import { ImageGallery } from 'components/ImageGallery/ImageGallery';
 import { Button } from 'components/Button/Button';
 import { Modal } from 'components/Modal/Modal';
 import { Loader } from 'components/Loader/Loader';
+import css from 'components/App.module.css';
 
 const API_KEY = '33139428-a4880fd896903b0937526f617';
 
@@ -110,7 +111,7 @@ export class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className={css.container}>
         <Searchbar onSubmit={this.onSubmit} />
         {this.state.isLoading && <Loader />}
         {this.state.error && (

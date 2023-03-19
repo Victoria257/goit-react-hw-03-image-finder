@@ -1,3 +1,4 @@
+import css from './ImageGalleryItem.module.css';
 export const ImageGalleryItem = ({
   id,
   largeImageURL,
@@ -5,7 +6,7 @@ export const ImageGalleryItem = ({
   openModal,
 }) => {
   return (
-    <li key={id} onClick={() => openModal(largeImageURL)}>
+    <li className={css.item} key={id} onClick={() => openModal(largeImageURL)}>
       <img src={webformatURL} alt="imageName" />
     </li>
   );
