@@ -1,3 +1,4 @@
+import { ImageGalleryItem } from 'components/ImageGalleryItem/ImageGalleryItem';
 export const ImageGallery = ({ imageList, isLoading, openModal }) => {
   return (
     <ul>
@@ -5,9 +6,12 @@ export const ImageGallery = ({ imageList, isLoading, openModal }) => {
         isLoading ? (
           <p>Loading...</p>
         ) : (
-          <li key={id} onClick={() => openModal(largeImageURL)}>
-            <img src={webformatURL} alt="imageName" />
-          </li>
+          <ImageGalleryItem
+            key={id}
+            webformatURL={webformatURL}
+            largeImageURL={largeImageURL}
+            openModal={openModal}
+          />
         )
       )}
     </ul>
