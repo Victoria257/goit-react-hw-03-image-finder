@@ -6,7 +6,6 @@ export class Searchbar extends Component {
   };
 
   handleChange = event => {
-    console.log(event.currentTarget);
     const { name, value } = event.currentTarget;
     this.setState({ [name]: value });
   };
