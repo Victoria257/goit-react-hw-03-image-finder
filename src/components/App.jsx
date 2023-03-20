@@ -67,7 +67,6 @@ export class App extends Component {
   onSubmit = event => {
     this.setState({
       images: [],
-      isLoading: false,
       error: null,
       page: 1,
       total: 0,
@@ -78,11 +77,8 @@ export class App extends Component {
 
   onLoadMoreBtn = () => {
     this.setState(prevState => {
-      if (this.state.page < this.state.total) {
+      if (this.state.page < this.state.total)
         return { page: prevState.page + 1 };
-      } else {
-        return { page: prevState.page };
-      }
     });
   };
 
@@ -122,7 +118,6 @@ export class App extends Component {
         )}
         <ImageGallery
           imageList={this.state.images}
-          isLoading={this.state.isLoading}
           openModal={this.openModal}
         />
 
