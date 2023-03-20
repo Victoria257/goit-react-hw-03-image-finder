@@ -31,7 +31,7 @@
   width: 48px;
   height: 48px;
   border: 0;
-  /* background-image: url('https://image.flaticon.com/icons/svg/149/149852.svg'); */
+  background-image: url('https://www.flaticon.com/svg/vstatic/svg/3917/3917754.svg?token=exp=1679304474~hmac=a0183e50c191ed25f29923830928d765');
   background-size: 40%;
   background-repeat: no-repeat;
   background-position: center;
@@ -45,7 +45,7 @@
   opacity: 1;
 }
 
-/* .buttonLabel {
+.buttonLabel {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -55,7 +55,7 @@
   white-space: nowrap;
   clip-path: inset(50%);
   border: 0;
-} */
+}
 
 .input {
   display: inline-block;
