@@ -22,7 +22,7 @@ ImageGallery.propTypes = {
   openModal: PropTypes.func.isRequired,
   imageList: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
       webformatURL: PropTypes.string.isRequired,
       largeImageURL: PropTypes.string.isRequired,
     }).isRequired
