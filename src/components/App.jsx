@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 
 import { Searchbar } from 'components/Searchbar/Searchbar';
 import { ImageGallery } from 'components/ImageGallery/ImageGallery';
 import { Button } from 'components/Button/Button';
 import { Modal } from 'components/Modal/Modal';
 import { Loader } from 'components/Loader/Loader';
+import { fetchImages } from 'components/Api-Pixabay/Api-Pixabay';
 import css from 'components/App.module.css';
-
-const API_KEY = '33139428-a4880fd896903b0937526f617';
 
 export class App extends Component {
   state = {
@@ -42,16 +40,14 @@ export class App extends Component {
     const name = this.state.nameSearch;
     if (name !== prevState.nameSearch || this.state.page !== prevState.page) {
       this.setState({ isLoading: true });
-      const response = await axios.get(
-        `https://pixabay.com/api/?q=${name}&page=1&key=${API_KEY}&image_type=photo&orientation=horizontal&per_page=12&page=${this.state.page}`
-      );
 
       try {
-        const images = response.data.hits;
-        if (response.data.total === 0) {
+        const data = await fetchImages({ name, page: this.state.page });
+        const images = data.hits;
+        if (fetch.total === 0) {
           this.setState({ error: 'error' });
         }
-        const pageTotal = Math.ceil(response.data.total / 12);
+        const pageTotal = Math.ceil(data.total / 12);
         this.setState(prevState => ({
           images: [...prevState.images, ...images],
           total: pageTotal,
@@ -106,29 +102,29 @@ export class App extends Component {
   };
 
   render() {
+    const { error, images, isLoading, page, total, showModal, largeImage } =
+      this.state;
     return (
       <div className={css.container}>
         <Searchbar onSubmit={this.onSubmit} />
-        {this.state.isLoading && <Loader />}
-        {this.state.error && (
+        {error && (
           <p>
             По цьому запиту нічого не знайдено. Введіть, будь ласка, інший
             запит.
           </p>
         )}
-        <ImageGallery
-          imageList={this.state.images}
-          openModal={this.openModal}
-        />
-
-        {this.state.images.length > 0 && this.state.page < this.state.total && (
+        {images.length > 0 && (
+          <ImageGallery imageList={images} openModal={this.openModal} />
+        )}
+        {isLoading && <Loader />}
+        {images.length > 0 && page < total && !isLoading && (
           <Button onLoadMoreBtn={this.onLoadMoreBtn} />
         )}
-        {this.state.page === this.state.total && <p>This is last page</p>}
+        {page === total && <p>This is last page</p>}
 
-        {this.state.showModal && (
+        {showModal && (
           <Modal
-            largeImage={this.state.largeImage}
+            largeImage={largeImage}
             onCloseModal={this.onCloseModal}
             onPressEsc={this.onPressEsc}
           />
